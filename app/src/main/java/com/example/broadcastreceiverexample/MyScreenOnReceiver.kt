@@ -3,11 +3,18 @@ package com.example.broadcastreceiverexample
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
-import android.widget.Toast
 
 class MyScreenOnReceiver : BroadcastReceiver() {
+    var offCounter = 0
+    var onCounter = 0
+
     override fun onReceive(context: Context, intent: Intent) {
-        val toast = Toast.makeText(context, "Received Broadcast: "  + intent.action, Toast.LENGTH_LONG)
-        toast.show()
+
+        if(intent.action == Intent.ACTION_SCREEN_OFF){
+            offCounter++
+        }
+        else if(intent.action == Intent.ACTION_SCREEN_ON){
+            onCounter++
+        }
     }
 }
