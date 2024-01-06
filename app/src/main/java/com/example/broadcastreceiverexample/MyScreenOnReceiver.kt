@@ -7,7 +7,7 @@ import android.widget.Toast
 
 class MyScreenOnReceiver : BroadcastReceiver() {
     override fun onReceive(context: Context, intent: Intent) {
-        val toast = Toast.makeText(context, "Locale changed", Toast.LENGTH_SHORT)
+        val toast = Toast.makeText(context, "Received Broadcast: "  + intent.action, Toast.LENGTH_LONG)
         toast.show()
     }
 }
