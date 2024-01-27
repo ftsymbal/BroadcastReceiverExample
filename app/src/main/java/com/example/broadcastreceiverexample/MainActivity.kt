@@ -8,9 +8,12 @@ import android.widget.TextView
 
 val receiver = MyScreenOnReceiver()
 class MainActivity : AppCompatActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        textView = findViewById(R.id.MyTextView)
 
         val filter = IntentFilter(Intent.ACTION_SCREEN_ON)
         filter.addAction(Intent.ACTION_SCREEN_OFF)
@@ -24,9 +27,16 @@ class MainActivity : AppCompatActivity() {
     }
     override fun onResume() {
         super.onResume()
-        var textView : TextView = findViewById(R.id.MyTextView)
-        textView.text = "Counted" +
+        updateCounters()
+    }
+    companion object {
+        private lateinit var textView: TextView
+        fun updateCounters() {
+            if (::textView.isInitialized) {
+                textView.text = "Counted" +
                         " OFFs: " + receiver.offCounter +
                         " ONs: " + receiver.onCounter
+            }
+        }
     }
 }
